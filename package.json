@@ -1,0 +1,19 @@
+{
+  "name": "rosmaro-process-wide-lock",
+  "version": "0.0.1",
+  "description": "Process-wide, in-memory locks for Rosmaro",
+  "main": "lock.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test.js"
+  },
+  "keywords": [
+    "rosmaro",
+    "lock"
+  ],
+  "author": "Łukasz Makuch <kontakt@lukaszmakuch.pl>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "sleep-promise": "^2.0.0"
+  }
+}
