@@ -1,6 +1,6 @@
 {
   "name": "rosmaro-process-wide-lock",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Process-wide, in-memory locks for Rosmaro",
   "main": "lock.js",
   "scripts": {
