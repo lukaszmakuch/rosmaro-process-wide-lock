@@ -1,4 +1,4 @@
-const makeLock = require('./lock.js');
+const makeLock = require('./lock.js').default;
 const makeCounter = require('./asyncCounter');
 const assert = require('assert');
 var sleep = require('sleep-promise');

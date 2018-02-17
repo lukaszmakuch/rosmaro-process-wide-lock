@@ -1,50 +1,52 @@
-const LOCKED = 3, UNLOCKED = 4;
+var LOCKED = 3, UNLOCKED = 4;
 
-module.exports = () => {
-  let locks, currIndex, listeners;
+exports.default = function () {
+  var locks, currIndex, listeners;
 
-  const reset = () => {
+  var reset = function () {
     locks = [];
     currIndex = 0;
     listeners = [];
   };
   reset();
 
-  const isUnlocked = lockStatus => lockStatus === UNLOCKED;
+  var isUnlocked = function (lockStatus) {return lockStatus === UNLOCKED;};
 
-  const unlockedAllUpTo = index => locks
-    .slice(0, index + 1)
-    .every(isUnlocked);
+  var unlockedAllUpTo = function (index) {
+    return locks
+      .slice(0, index + 1)
+      .every(isUnlocked);
+  } 
 
-  const whenResolvedUpTo = (index, res) => {
+  var whenResolvedUpTo = function (index, res) {
     if (unlockedAllUpTo(index)) {
       return res;
     } else {
-      return new Promise(resolve => {
+      return new Promise(function (resolve) {
         listeners[index] = resolve;
-      }).then(() => res);
+      }).then(function () {return res});
     }
   };
 
-  const gc = () => {
+  var gc = function () {
     if (locks.every(isUnlocked)) {
       reset();
     }
   };
 
-  const unlock = index => {
+  var unlock = function (index) {
     locks[index] = UNLOCKED;
-    const allUnlocked = unlockedAllUpTo(index);
+    var allUnlocked = unlockedAllUpTo(index);
     if (allUnlocked && listeners[index]) listeners[index]();
     gc();
   };
 
-  const lock = () => {
+  var lock = function () {
     locks[currIndex] = LOCKED;
-    const prevIndex = currIndex - 1;
-    const acquiredIndex = currIndex;
+    var prevIndex = currIndex - 1;
+    var acquiredIndex = currIndex;
     currIndex++;
-    const unlockFn = () => unlock(acquiredIndex);
+    var unlockFn = function () {unlock(acquiredIndex);};
     return whenResolvedUpTo(prevIndex, unlockFn);
   };
 

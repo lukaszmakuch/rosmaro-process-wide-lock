@@ -3,7 +3,7 @@ This package provides process-wide, in-memory locks for [Rosmaro](https://github
 
 ## Usage
 ```js
-const make_lock = require('rosmaro-process-wide-lock')
+const make_lock = require('rosmaro-process-wide-lock').default
 const lock = make_lock()
 ```
 
