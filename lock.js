@@ -1,6 +1,6 @@
 var LOCKED = 3, UNLOCKED = 4;
 
-exports.default = function () {
+module.exports = function () {
   var locks, currIndex, listeners;
 
   var reset = function () {
